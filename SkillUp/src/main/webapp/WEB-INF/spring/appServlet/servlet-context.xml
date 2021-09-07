@@ -21,8 +21,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.skillup..controller" />
+	<!-- File upload -->
+	<beans:bean id="multipartResolver"
+				class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 
+	<context:component-scan base-package="com.skillup.controller" />
 
 
 </beans:beans>

@@ -14,5 +14,42 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:annotation-config/>
+
+	<!-- hikari -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName"
+				  value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="jdbcUrl"
+				  value="jdbc:log4jdbc:postgresql://localhost:5432/skillup"/>
+		<property name="username" value="postgres"/>
+		<property name="password" value="himitu"/>
+	</bean>
+
+	<!-- dataSource -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+	      destroy-method="close">
+		<constructor-arg ref="hikariConfig"/>
+	</bean>
+
+	<!-- myBatis -->
+	<bean id="sqlSessionFactory"
+	      class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- transaction -->
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+
+	<mybatis-spring:scan base-package="com.skillup.mapper"/>
+	<context:component-scan base-package="com.skillup.service"/>
+
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<task:annotation-driven/>
 
 </beans>
+
