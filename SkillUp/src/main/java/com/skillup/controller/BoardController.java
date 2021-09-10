@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skillup.domain.BoardVO;
+import com.skillup.domain.Criteria;
+import com.skillup.domain.PageDTO;
 import com.skillup.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -58,9 +60,11 @@ public class BoardController {
 	}
 
 	@GetMapping("/list")//掲示板の全てのポスト呼び出し
-	public void list(Model model) {
+	public void list(Criteria cri, Model model) {
 		log.info("BoardController...list()" );
-		model.addAttribute("list", service.getList());
+		int total = service.getTotalCount();
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(total, cri));
 	}
 
 

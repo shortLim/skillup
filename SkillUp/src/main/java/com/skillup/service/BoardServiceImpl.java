@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skillup.domain.BoardVO;
+import com.skillup.domain.Criteria;
 import com.skillup.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -38,9 +39,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri) {
 		log.info("BoardServiceImpl...getList()");
-		return mapper.getList();
+		return mapper.getList(cri);
 	}
 
 	@Override

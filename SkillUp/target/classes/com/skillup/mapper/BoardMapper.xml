@@ -15,7 +15,7 @@
 
   <!-- 게시물 조회 -->
   <select id="getList" resultType="com.skillup.domain.BoardVO">
-    SELECT * FROM tbl_board WHERE pno > 0 ORDER BY pno DESC limit 10;
+    SELECT * FROM tbl_board WHERE pno > 0 ORDER BY pno DESC limit 10 offset (#{pageNum}-1)*10;
 
   </select>
 
