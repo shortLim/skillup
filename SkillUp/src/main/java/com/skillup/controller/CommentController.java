@@ -85,7 +85,7 @@ public class CommentController {
 		//성공이면 200, 실패면 500 반환
 		return (ResponseEntity<String>) (insertCount == 1
 			   ? new ResponseEntity<String>("success", HttpStatus.OK)
-			   : new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR));
+			   : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR));
 	}
 
 }

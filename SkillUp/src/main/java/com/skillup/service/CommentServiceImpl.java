@@ -29,12 +29,6 @@ public class CommentServiceImpl implements CommentService {
 		return new CommentPageDTO(mapper.getListPage(cri, pNo),mapper.getCountByPNo(pNo));
 	}
 
-	/*	@Override
-		public List<CommentVO> getList(Criteria cri, Long pNo) {
-			log.info("CommentServiceImpl getList() pNo : "+ pNo);
-			return mapper.getList(cri, pNo);
-		}
-	*/
 	@Override
 	public int modify(CommentVO vo) {
 		log.info("CommentServiceImpl modify() vo : "+ vo);
@@ -45,20 +39,23 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public int remove(Long cNo, String cPass) {
 		log.info("CommentServiceImpl remove() cNo : "+cNo+", cPass : "+ cPass);
-		bMapper.updateCCnt(cNo, -1);
+		Long pNo = mapper.read(cNo).getPNo();
+		bMapper.updateCCnt(pNo, mapper.getCountByPNo(pNo)-1);
 		return mapper.delete(cNo, cPass);
 	}
 
+	//コメント1読み
 	@Override
 	public CommentVO get(Long cNo) {
 		log.info("CommentServiceImpl get() cNo : "+ cNo);
 		return mapper.read(cNo);
 	}
 
+	//コメント作成
 	@Override
 	public int register(CommentVO vo) {
 		log.info("CommentServiceImpl register() vo : "+vo);
-		bMapper.updateCCnt(vo.getPNo(), 1);
+		bMapper.updateCCnt(vo.getPNo(), mapper.getCountByPNo(vo.getPNo())+1);
 		return mapper.insert(vo);
 	}
 

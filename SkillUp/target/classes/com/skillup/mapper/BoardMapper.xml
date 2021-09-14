@@ -50,7 +50,7 @@
   <!-- コメント数変更 -->
   <update id="updateCCnt">
   	UPDATE 	tbl_board
-  	SET 	ccnt = ccnt + #{amount}
+  	SET 	ccnt = #{amount}
   	WHERE 	pno = #{pNo}
   </update>
 

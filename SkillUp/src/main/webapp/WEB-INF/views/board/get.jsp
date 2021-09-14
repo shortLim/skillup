@@ -386,6 +386,7 @@ $(function(){
 	 			comment,
 		 	    function(result){
 		 		    alert(result);
+		 		   modal.find('input').val('');
 		 		    modal.modal('hide');	//모달창 숨기기
 		 		    showList(pageNum);
 		 	    }
@@ -402,6 +403,7 @@ $(function(){
 		 		console.log("replyService.remove count : " + count);
 		 		if(count == 'success'){
 		 			alert('remove ok');
+		 			modal.find('input').val('');
 		 		    modal.modal('hide');	//모달창 숨기기
 // 		 	 		showList(1);			//수정 댓글 목록 가져오기
 		 		    showList(pageNum);
