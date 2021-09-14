@@ -27,9 +27,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotalCount() {
+	public int getTotalCount(Criteria cri) {
 		log.info("BoardServiceImpl...getTotalCount()");
-		return mapper.getTotalCount();
+		return mapper.getTotalCount(cri);
 	}
 
 	@Override

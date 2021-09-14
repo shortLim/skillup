@@ -1,147 +1,134 @@
-console.log("REPLY MODULE....");
+console.log("comment MODULE....");
 
-var replyService = (function(){
-	
-	//댓글 등록 함수 
-	function add(reply, callback, error){
+var commentService = (function() {
+
+	//コメント登録関数（作動確認後、パスワード入力による登録機能追加）
+	function add(comment, callback, error) {
 		$.ajax({
 			type: 'post',
-			url: '/replies/new',
-			data: JSON.stringify(reply),
+			url: '/comments/new',
+			data: JSON.stringify(comment),
 			contentType : 'application/json; charset=UTF-8',
-			success: function(result, status, xhr){
-				if(callback){
+			success: function(result) {
+				if(callback) {
 					callback(result);
 				}
 			},
-			error: function(xhr, status, er){
-				if(error){
+			error: function(xhr, status, er) {
+				if (error) {
 					error(er);
 				}
 			}
 		});//END ajax()
 	}//END add()
-	
-	
-	//댓글 목록 가져오기
-	function getList(param, callback, error){
-		var bno = param.bno;
+
+
+	//コメントリスト呼び出し関数
+	function getList(param, callback, error) {
+		var pNo = param.pNo;
 		var page = param.page || 1;
-		
-		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
-			function(data){
-				if(callback){
-//					callback(data);
-					callback(data.replyCnt, data.list);
+
+		$.getJSON("/comments/pages/" + pNo + "/" + page + ".json",
+			function(data) {
+				if(callback) {
+					callback(data.list, data.ccnt);
 				}
 			}
-		).fail(function(xhr, status, er){
-			if(error){
+		).fail(function(xhr, status, er) {
+			if (error) {
 				error(er);
 			}
 		});//END getJSON() fail()
-	}//END getList()	
-	
-	//댓글 삭제 함수 
-	function remove(rno, replyer, callback, error){
+	}//END getList()
+
+	//コメント削除関数（作動確認後、パスワード入力による削除機能追加）
+	function remove(cNo, cPass, callback, error) {
 		$.ajax({
-			type	: 'delete',
-			url		: '/replies/' + rno,
-			data	: JSON.stringify({ rno:rno, replyer:replyer }),
-			contentType : "application/json; charset=UTF-8",
-			success	: function(result, status, xhr){
-				if(callback){
+			type: 'delete',
+			url: '/comments/' + cNo,
+			data: JSON.stringify({ cno: cNo, cpass: cPass }),
+			contentType: "application/json; charset=UTF-8",
+			success: function(result) {
+				if (callback) {
 					callback(result);
 				}
 			},
-			error: function(xhr, status, er){
-				if(error){
+			error: function(xhr, status, er) {
+				if (error) {
 					error(er);
 				}
 			}
 		});//END ajax()
 	}//END remove()
-	
-	//댓글 수정 함수 
-	function update(reply, callback, error){
+
+	//コメント修正関数（作動確認後、パスワード入力による修正機能追加）
+	function update(comment, callback, error) {
 		$.ajax({
 			type: 'put',
-			url: '/replies/' + reply.rno ,
-			data: JSON.stringify(reply),
-			contentType : 'application/json; charset=UTF-8',
-			success: function(result, status, xhr){
-				if(callback){
+			url: '/comments/' + comment.cno,
+			data: JSON.stringify(comment),
+			contentType: 'application/json; charset=UTF-8',
+			success: function(result) {
+				if (callback) {
 					callback(result);
 				}
 			},
-			error: function(xhr, status, er){
-				if(error){
+			error: function(xhr, status, er) {
+				if (error) {
 					error(er);
 				}
 			}
 		});//END ajax()
 	}//END update()
-	
 
-	//댓글 하나 가져오기
-	function get(rno, callback, error){
-		$.get("/replies/" + rno + ".json",
-			function(data){
-				if(callback){
+
+	//コメント1個呼び出し関数
+	function get(cNo, callback, error) {
+		$.get("/comments/" + cNo + ".json",
+			function(data) {
+				if (callback) {
 					callback(data);
 				}
 			}
-		).fail(function(xhr, status, er){
-			if(error){
+		).fail(function(xhr, status,  er) {
+			if (error) {
 				error(er);
 			}
 		});//END get() fail()
-	}//END get()	
-	
-	//댓글 시간 표시 함수
-	function displayTime(timeValue){
-		var today 	= new Date();
-		var gap  	= today.getTime() - timeValue;
+	}//END get()
+
+	//コメント作成日時表示関数
+	function displayTime(timeValue) {
+		var today = new Date();
+		var gap = today.getTime() - timeValue;
 		var dateObj = new Date(timeValue);
-		
-		//등록일과 오늘 날짜 체크 
-		if(today.getDate() === dateObj.getDate()){
+
+		//등록일과 오늘 날짜 체크
+		if (today.getDate() === dateObj.getDate()) {
 			//같으면 '시:분:초' 출력
 			var hh = dateObj.getHours();
 			var mi = dateObj.getMinutes();
 			var ss = dateObj.getSeconds();
-			
-			return [ (hh > 9 ? '' : '0') + hh, ':', 
-					 (mi > 9 ? '' : '0') + mi, ':',
-					 (ss > 9 ? '' : '0') + ss       ].join('');
-		} else { 	
+
+			return [(hh > 9 ? '' : '0') + hh, ':',
+			(mi > 9 ? '' : '0') + mi, ':',
+			(ss > 9 ? '' : '0') + ss].join('');
+		} else {
 			//다르면 '연/월/일' 출력
 			var yy = dateObj.getFullYear();
 			var mm = dateObj.getMonth() + 1;
 			var dd = dateObj.getDate();
-			
-			return [  yy, '/', 
-					 (mm > 9 ? '' : '0') + mm, '/',
-					 (dd > 9 ? '' : '0') + dd       ].join('');
+
+			return [yy, '/',
+				(mm > 9 ? '' : '0') + mm, '/',
+				(dd > 9 ? '' : '0') + dd].join('');
 		}
 	}//END displayTime()
-	
-	return { get:get, update:update, remove:remove, 
-			 getList:getList, add:add,
-			 displayTime:displayTime };
+
+	return {
+		get: get, update: update, remove: remove,
+		getList: getList, add: add,
+		displayTime: displayTime
+	};
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

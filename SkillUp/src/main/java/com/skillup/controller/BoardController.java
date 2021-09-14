@@ -3,6 +3,7 @@ package com.skillup.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,8 +25,10 @@ public class BoardController {
 
 	private BoardService service;
 
-	@GetMapping({"/get", "/modify"})			//게시물 조회 또는 수정
-	public void get(@RequestParam("pNo") long pNo,Model model) {
+	@GetMapping({"/get", "/read", "/modify"})			//게시물 조회 또는 수정
+	public void get(@RequestParam("pNo") long pNo,
+					@ModelAttribute("cri") Criteria cri,
+					Model model) {
 		log.info("BoardController...get() or modify()");
 		model.addAttribute("board", service.get(pNo));
 	}
@@ -59,10 +62,18 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
+	@GetMapping("/listFree")//掲示板の全てのポスト呼び出し
+	public void listFree(Criteria cri, Model model) {
+		log.info("BoardController...list()" );
+		int total = service.getTotalCount(cri);
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(total, cri));
+	}
+
 	@GetMapping("/list")//掲示板の全てのポスト呼び出し
 	public void list(Criteria cri, Model model) {
 		log.info("BoardController...list()" );
-		int total = service.getTotalCount();
+		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(total, cri));
 	}

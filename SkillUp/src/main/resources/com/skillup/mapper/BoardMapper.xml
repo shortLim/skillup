@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.skillup.mapper.BoardMapper">
-
   <!-- 전체 게시물 수 조회 -->
   <select id="getTotalCount" resultType="int">
   	SELECT 	COUNT(*)
@@ -48,6 +47,12 @@
 	VALUES (1,#{name},#{pass},#{title},#{content});
   </insert>
 
+  <!-- コメント数変更 -->
+  <update id="updateCCnt">
+  	UPDATE 	tbl_board
+  	SET 	ccnt = ccnt + #{amount}
+  	WHERE 	pno = #{pNo}
+  </update>
 
 </mapper>
 
