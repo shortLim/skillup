@@ -33,7 +33,7 @@ CREATE TABLE tbl_board
 CREATE TABLE tbl_comment
 (
   cno INT PRIMARY KEY DEFAULT nextval('seq_tbl_comment'),
-  pno INT REFERENCES tbl_board,
+  pno INT REFERENCES tbl_board ON DELETE CASCADE,
   cname VARCHAR(50) NOT NULL,
   cpass VARCHAR(100) NOT NULL,
   ccontent VARCHAR(200) NOT NULL,
