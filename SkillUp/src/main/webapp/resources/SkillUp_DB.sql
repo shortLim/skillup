@@ -1,9 +1,13 @@
-/* skillupデータベース作成 */
+/* skillupデータベース作成
+ * skillupデータベースが作成済みの場合は11行へ移動*/
 CREATE DATABASE skillup;
 
 /* skillupデータベース選択 */
 \c skillup;
 
+/* skillupデータベースが既に存在する場合はこ
+ * postgresアカウントでskillupデータベースへアクセス後
+ * 11行目のコマンドから実行 */
 DROP TABLE IF EXISTS tbl_comment;
 
 DROP TABLE IF EXISTS tbl_board;

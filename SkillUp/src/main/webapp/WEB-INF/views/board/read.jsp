@@ -67,7 +67,7 @@ input:focus {
 								style="border-color: gray;">修正</button></td>
 					</tr>
 				</table>
-				<form role="form" action="/board/update" id="operForm">
+				<form role="form" action="/board/boardModify" id="operForm">
 					<input type="hidden" id="pNo" name="pNo" value="${board.PNo }">
 				</form>
 			</div>

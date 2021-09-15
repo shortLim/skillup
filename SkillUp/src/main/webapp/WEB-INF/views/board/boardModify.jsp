@@ -38,16 +38,14 @@
 <body>
 	<header>
 		<table>
-			<table>
-				<tr>
-					<td width="17%" height="180px"><a href="../board/boardMain">
-							<img src="../resources/img/boardMainLogo.png" width="100%"
-							height="180px" style="margin: 0">
-					</a></td>
-					<td><iframe src="/board/boardUp" width="100%" height="180px"
-							frameborder=0 framespacing=0> </iframe></td>
-				</tr>
-			</table>
+			<tr>
+				<td width="17%" height="180px"><a href="../board/boardMain">
+						<img src="../resources/img/boardMainLogo.png" width="100%"
+						height="180px" style="margin: 0">
+				</a></td>
+				<td><iframe src="/board/boardUp" width="100%" height="180px"
+						frameborder=0 framespacing=0> </iframe></td>
+			</tr>
 		</table>
 	</header>
 	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
@@ -80,50 +78,58 @@
 					</ul>
 				</div>
 			</nav>
+
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
-						<form action="#" method="post">
+						<form role="form" action="/board/boardModify" method="post">
 							<table class="table table-bordered">
 								<tr>
-									<td>タイトル</td>
-									<td><input type="text" class="form-control" name="title"
-										required></td>
-								</tr>
-								<tr>
-									<td>作成者</td>
-									<td><input type="text" class="form-control" name="name"
-										required></td>
+									<td>番号</td>
+									<td><input style="border: none" name="pNo"
+										value="${board.PNo }" readonly></td>
 								</tr>
 								<tr>
 									<td>パスワード</td>
-									<td><input type="password" class="form-control"
-										name="pass" placeholder="4桁以上入力してください。" required></td>
+									<td><input class="form-control" name="pass">
+								</tr>
+								<tr>
+									<td>タイトル</td>
+									<td><input class="form-control" name="title"
+										value="${board.title }">
+								</tr>
+								<tr>
+									<td>作成者</td>
+									<td><input class="form-control" name="name"
+										value="${board.name }"></td>
 								</tr>
 								<tr>
 									<td>本文</td>
 									<td><textarea rows="10" cols="50" name="content"
-											class="form-control"></textarea></td>
+											class="form-control">${board.content }</textarea></td>
 								</tr>
 								<tr>
-									<td colspan="2" class="text-center"><input
-										class="btn btn-default" type="submit" value="登録"
-										style="border-color: gray;">
+
+									<td colspan="2" class="text-center">
+										<button class="btn btn-default" type="submit"
+											style="border-color: gray;" data-oper="update">登録</button>
+										<button class="btn btn-default" type="submit"
+											style="border-color: gray;" data-oper="remove">削除</button>
+									</td>
 								</tr>
+
 							</table>
 						</form>
 					</div>
 				</div>
 				<script>
 					CKEDITOR.replace('content', {
-
 						width : '100%',
 						height : '350'
 					});
 				</script>
-
 			</main>
 		</div>
 	</div>
@@ -146,5 +152,31 @@
 		feather.replace()
 	</script>
 
+	<script>
+	$(function(){
+
+		var formObj = $('form');
+
+		$('button').on('click', function(e){
+			e.preventDefault();	//기본 동작 막기
+
+			var operation = $(this).data("oper");
+
+			if(operation === 'remove') { 		//삭제 버튼인 경우
+				formObj.attr('action', '/board/remove');
+			} else if(operation === 'list'){	//리스트 버튼인 경우
+
+				formObj.attr('action', "/board/list")
+					   .attr('method', 'read');
+				formObj.empty();
+
+			} else if(operation === 'update'){
+				formObj.attr('action', '/board/boardModify');
+			}
+			formObj.submit();	//전송
+		});//END button 이벤트 처리
+
+	});
+	</script>
 </body>
 </html>
