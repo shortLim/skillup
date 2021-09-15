@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+	#container {
+			width: 70%;
+			margin: 0 auto;
+			padding-top: 10%;
+	}
+
+	#list {
+		text-align: center;
+	}
+
+	#write {
+		text-align: right;
+	}
+
+	.table > thead {
+		background-color: #b3c6ff;
+	}
+	.table > thead > tr > th {
+		text-align: center;
+	}
+	.table-hover > tboby > tr:hover {
+		background-color: #cce5ff;
+	}
+	.table > tbody > tr > td {
+		text-align: center;
+	}
+
+	.table > tbody > tr > #title {
+		text-align: left;
+	}
+
+	div > #paging {
+		text-align: center;
+	}
+
+	.hit {
+		animation-name: blink;
+		animation-duration: 1.5s;
+		animation-timing-function: ease;
+		animation-iteration-count: infinite;
+	}
+
+	@keyframes blink {
+		from {color: white;}
+		30% {color: yellow;}
+		to {color: red; font-weight: bold;}
+		30% {color: yellow;}
+		100% {color:red; font-weight: bold;}
+	}
+
+	.paging-div {
+		padding: 15px 0 5px 10px;
+		display: table;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}

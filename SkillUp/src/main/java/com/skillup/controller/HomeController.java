@@ -1,7 +1,5 @@
 package com.skillup.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -24,16 +22,36 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+//		logger.info("Welcome home! The client locale is {}.", locale);
+//
+//		Date date = new Date();
+//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+//
+//		String formattedDate = dateFormat.format(date);
+//
+//		model.addAttribute("serverTime", formattedDate );
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		return "/board/boardMain";
+	}
 
-		String formattedDate = dateFormat.format(date);
+	@RequestMapping(value = "/boardMain")
+	public String boardMain() {
+		return "board/boardMain";
+	}
 
-		model.addAttribute("serverTime", formattedDate );
+	@RequestMapping(value = "/boardBuy")
+	public String boardBuy() {
+		return "board/boardBuy";
+	}
 
-		return "home";
+	@RequestMapping(value = "/boardSell")
+	public String boardSell() {
+		return "board/boardSell";
+	}
+
+	@RequestMapping(value = "/boardFree")
+	public String boardFree() {
+		return "board/boardFree";
 	}
 
 }

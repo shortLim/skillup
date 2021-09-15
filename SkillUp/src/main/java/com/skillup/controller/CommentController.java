@@ -64,7 +64,6 @@ public class CommentController {
 	}
 
 	@GetMapping("/pages/{pNo}/{page}")
-//	public ResponseEntity<List<CommentVO>> getList(
 	public ResponseEntity<CommentPageDTO> getListPage(
 							@PathVariable("page") int page,
 							@PathVariable("pNo") Long pNo ) {
