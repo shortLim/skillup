@@ -119,17 +119,17 @@ input:focus {
 								aria-hidden="true">&times;</button>
 							<h4 class="modal-title" id="myModalLabel">コメント作成</h4>
 						</div>
-						<div class="form-group">
-							<label>コメント番号</label> <input class="form-control" name="cNo"
-								readonly>
-						</div>
-						<div class="form-group">
-							<label>作成者</label> <input class="form-control" name="cName">
-						</div>
-						<div class="form-group">
-							<label>パスワード</label> <input class="form-control" name="cPass">
-						</div>
 						<div class="modal-body">
+							<div class="form-group">
+								<label>コメント番号</label> <input class="form-control" name="cNo"
+									readonly>
+							</div>
+							<div class="form-group">
+								<label>作成者</label> <input class="form-control" name="cName">
+							</div>
+							<div class="form-group">
+								<label>パスワード</label> <input class="form-control" name="cPass">
+							</div>
 							<div class="form-group">
 								<label>コメント</label> <input class="form-control" name="cContent">
 							</div>
@@ -140,12 +140,12 @@ input:focus {
 						<!-- END modal-body -->
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-warning" id='modalModBtn'>Modify</button>
-							<button type="button" class="btn btn-danger" id='modalRemoveBtn'>Remove</button>
+							<button type="button" class="btn btn-warning" id='modalModBtn'>修正</button>
+							<button type="button" class="btn btn-danger" id='modalRemoveBtn'>削除</button>
 							<button type="button" class="btn btn-primary"
-								id='modalRegisterBtn'>Register</button>
+								id='modalRegisterBtn'>登録</button>
 							<button type="button" class="btn btn-default" id='modalCloseBtn'
-								data-dismiss='modal'>Close</button>
+								data-dismiss='modal'>閉じる</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -283,6 +283,7 @@ $(function(){
  	var modalModBtn 	 = $('#modalModBtn'); 		//수정 버튼
  	var modalRemoveBtn 	 = $('#modalRemoveBtn'); 	//삭제 버튼
  	var modalRegisterBtn = $('#modalRegisterBtn'); 	//등록 버튼
+ 	var modalCloseBtn 	 = $('#modalCloseBtn');
 
  	//신규 댓글 버튼 이벤트 처리
  	$('#addCommentBtn').on('click', function(){
@@ -382,6 +383,12 @@ $(function(){
 		 	}
 	 	 );//END remove
  	});//END 댓글 삭제 버튼 이벤트 처리
+
+ 	//모달창 닫기
+ 	modalCloseBtn.on('click',function(){
+ 		modal.modal('hide');
+ 	});
+
 });
  </script>
 </body>
