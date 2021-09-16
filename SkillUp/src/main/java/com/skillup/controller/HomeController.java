@@ -34,24 +34,4 @@ public class HomeController {
 		return "/board/boardMain";
 	}
 
-	@RequestMapping(value = "/boardMain")
-	public String boardMain() {
-		return "board/boardMain";
-	}
-
-	@RequestMapping(value = "/boardBuy")
-	public String boardBuy() {
-		return "board/boardBuy";
-	}
-
-	@RequestMapping(value = "/boardSell")
-	public String boardSell() {
-		return "board/boardSell";
-	}
-
-	@RequestMapping(value = "/boardFree")
-	public String boardFree() {
-		return "board/boardFree";
-	}
-
 }

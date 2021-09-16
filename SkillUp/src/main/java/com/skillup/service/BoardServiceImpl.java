@@ -33,6 +33,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public BoardVO read(Long pNo) {
+		log.info("BoardServiceImpl...read()");
+		mapper.updateHit(pNo);
+		return mapper.read(pNo);
+	}
+
+	@Override
 	public BoardVO get(Long pNo) {
 		log.info("BoardServiceImpl...get()");
 		return mapper.read(pNo);

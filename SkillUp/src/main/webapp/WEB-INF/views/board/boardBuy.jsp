@@ -25,7 +25,7 @@
 
 
 <link rel="icon"
-	href="../resources/bootstrap-4.0.0/docs/4.0/assets/img/favicons/favicon.ico">
+	href="/resources/bootstrap-4.0.0/docs/4.0/assets/img/favicons/favicon.ico">
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 <!-- Bootstrap core CSS -->
@@ -39,8 +39,8 @@
 	<header>
 		<table>
 			<tr>
-				<td width="17%" height="180px"><a href="../board/boardMain">
-						<img src="../resources/img/boardMainLogo.png" width="100%"
+				<td width="17%" height="180px"><a href="/board/boardMain">
+						<img src="/resources/img/boardMainLogo.png" width="100%"
 						height="180px" style="margin: 0">
 				</a></td>
 				<td><iframe src="/board/boardUp" width="100%" height="180px"
@@ -63,16 +63,16 @@
 				<div class="sidebar-sticky">
 					<ul class="nav flex-column">
 						<li class="nav-item"><a class="nav-link active"
-							href="boardMain"> <span data-feather="home"></span> ホーム <span
+							href="/board/boardMain"> <span data-feather="home"></span> ホーム <span
 								class="sr-only"></span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="boardBuy">
+						<li class="nav-item"><a class="nav-link" href="/board/boardBuy">
 								<span data-feather="shopping-cart"></span> 購入
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="boardSell">
+						<li class="nav-item"><a class="nav-link" href="/board/boardSell">
 								<span data-feather="shopping-cart"></span> 販売
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="boardFree">
+						<li class="nav-item"><a class="nav-link" href="/board/boardFree">
 								<span data-feather="users"></span> 自由
 						</a></li>
 					</ul>

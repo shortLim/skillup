@@ -28,6 +28,9 @@ public interface BoardMapper {
 
 	//コメント数変更
 	public void updateCCnt(@Param("pNo") Long pNo, @Param("amount") int amount);
+
+	//コメント数変更
+	public void updateHit(Long pNo);
 }
 
 

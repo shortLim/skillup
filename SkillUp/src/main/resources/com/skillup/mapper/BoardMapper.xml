@@ -83,6 +83,13 @@
   	WHERE 	pno = #{pNo}
   </update>
 
+    <!-- 照会数変更 -->
+  <update id="updateHit">
+  	UPDATE 	tbl_board
+  	SET 	hit = hit+1
+  	WHERE 	pno = #{pNo}
+  </update>
+
 </mapper>
 
 

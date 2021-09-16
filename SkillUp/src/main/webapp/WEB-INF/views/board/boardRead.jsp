@@ -63,17 +63,20 @@
 				<div class="sidebar-sticky">
 					<ul class="nav flex-column">
 						<li class="nav-item"><a class="nav-link active"
-							href="boardMain"> <span data-feather="home"></span> ホーム <span
-								class="sr-only"></span>
+							href="/board/boardMain"> <span data-feather="home"></span>
+								ホーム <span class="sr-only"></span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="boardBuy">
-								<span data-feather="shopping-cart"></span> 購入
+						<li class="nav-item"><a class="nav-link"
+							href="/board/boardBuy"> <span data-feather="shopping-cart"></span>
+								購入
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="boardSell">
-								<span data-feather="shopping-cart"></span> 販売
+						<li class="nav-item"><a class="nav-link"
+							href="/board/boardSell"> <span data-feather="shopping-cart"></span>
+								販売
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="boardFree">
-								<span data-feather="users"></span> 自由
+						<li class="nav-item"><a class="nav-link"
+							href="/board/boardFree"> <span data-feather="users"></span>
+								自由
 						</a></li>
 					</ul>
 				</div>
@@ -86,7 +89,8 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		window.jQuery
 				|| document

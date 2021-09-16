@@ -25,11 +25,19 @@ public class BoardController {
 
 	private BoardService service;
 
-	@GetMapping({ "/boardRead", "/boardModify" }) //게시물 조회 또는 수정
+	@GetMapping({ "/boardRead" }) //ポスト修正用照会
 	public void read(@RequestParam("pNo") long pNo,
 			@ModelAttribute("cri") Criteria cri,
 			Model model) {
 		log.info("BoardController...read() or update()");
+		model.addAttribute("board", service.read(pNo));
+	}
+
+	@GetMapping({ "/boardModify" }) //ポスト修正用照会
+	public void get(@RequestParam("pNo") long pNo,
+			@ModelAttribute("cri") Criteria cri,
+			Model model) {
+		log.info("BoardController...get()");
 		model.addAttribute("board", service.get(pNo));
 	}
 
@@ -58,7 +66,6 @@ public class BoardController {
 	@PostMapping("/boardWrite") //ポスト作成処理(board Ver.)
 	public String boardWrite(BoardVO board, RedirectAttributes rttr) {
 		log.info("BoardController...register()");
-
 		service.register(board);
 		rttr.addFlashAttribute("result", board.getPNo());
 			return "redirect:/board/boardSell";

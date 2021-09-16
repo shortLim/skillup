@@ -67,6 +67,7 @@
 						<td>${board.name }</td>
 						<td><fmt:formatDate value="${board.regDate }"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td>${board.hit }</td>
 					</tr>
 					</c:if>
 				</c:forEach>

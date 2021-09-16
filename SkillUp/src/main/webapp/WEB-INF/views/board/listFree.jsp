@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <link href="/resources/css/sellListStyle.css" rel="stylesheet"
 	type="text/css">
-<link rel="stylesheet" type="text/css"
-	href="bootstrap-3.2.2-dist/css/bootstrap.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
@@ -19,13 +17,10 @@
 	rel="stylesheet"
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
 	crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <title>自由リスト</title>
 </head>
 <body>
-		<div id="list"></div>
+	<div id="list"></div>
 
 	<div id="write">
 		<a href="boardWrite">
@@ -62,18 +57,19 @@
 				</c:if>
 				<c:forEach var="board" items="${list }">
 					<c:if test="${board.BNo eq 2}">
-					<tr>
-						<td>${board.PNo}</td>
-						<td><a href="${board.PNo}" class="move"> ${board.title }
+						<tr>
+							<td>${board.PNo}</td>
+							<td><a href="${board.PNo}" class="move"> ${board.title }
 
-								<c:if test="${ board.CCnt > 0 }">
-									<b>[${board.CCnt }]</b>
-								</c:if>
-						</a></td>
-						<td>${board.name }</td>
-						<td><fmt:formatDate value="${board.regDate }"
-								pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					</tr>
+									<c:if test="${ board.CCnt > 0 }">
+										<b>[${board.CCnt }]</b>
+									</c:if>
+							</a></td>
+							<td>${board.name }</td>
+							<td><fmt:formatDate value="${board.regDate }"
+									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>${board.hit }</td>
+						</tr>
 					</c:if>
 				</c:forEach>
 			</tbody>

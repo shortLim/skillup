@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <link href="/resources/css/sellListStyle.css" rel="stylesheet"
 	type="text/css">
-<link rel="stylesheet" type="text/css"
-	href="../bootstrap-4.0.0/dist/css/bootstrap.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
@@ -76,6 +74,7 @@
 						<td>${board.name }</td>
 						<td><fmt:formatDate value="${board.regDate }"
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td>${board.hit }</td>
 					</tr>
 					</c:if>
 				</c:forEach>
