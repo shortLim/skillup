@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SkillUp
+Bundle-SymbolicName: SkillUp
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: SkillUp
+Export-Package: com.skillup.controller,
+ com.skillup.domain,
+ com.skillup.mapper,
+ com.skillup.service

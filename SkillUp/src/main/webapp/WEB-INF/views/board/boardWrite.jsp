@@ -100,7 +100,7 @@
 								<tr>
 									<td>パスワード</td>
 									<td><input type="password" class="form-control"
-										name="pass" placeholder="4桁以上入力してください。" required></td>
+										name="pass" placeholder="4桁以上入力してください。" required pattern=".{4,}"></td>
 								</tr>
 								<tr>
 									<td>本文</td>
