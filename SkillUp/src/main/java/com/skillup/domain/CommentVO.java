@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class CommentVO {
+	private int crno;
 	private long cNo;
 	private long pNo;
 	private String cName;

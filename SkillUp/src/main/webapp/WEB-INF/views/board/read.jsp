@@ -202,7 +202,7 @@ $(function(){
 		 		for(var i=0 ; i<list.length ; i++){	//<li> 구성
 		 			str += "<li class='left clearfix' data-cNo='" + list[i].cno +"'>" +
 						   "	<div><div class='header'><strong class='primary-font'>" +
-						  		         list[i].cno + " : " +list[i].cname + "</strong>" +
+						  		         list[i].crno + " : " +list[i].cname + "</strong>" +
 						   "      <small class='pull-right text-muted'>" +
 						 		 	   /*  list[i].regDate */
 						 		 	   commentService.displayTime(list[i].regDate) + "</small></div></div>" +
