@@ -39,7 +39,7 @@
 
   <!-- 게시물 조회 -->
   <select id="getList" resultType="com.skillup.domain.BoardVO">
-    SELECT 	*
+    SELECT 	(row_number() over(ORDER BY pno)) AS prno,pno,bno,name,pass,title,content,regdate,modidate,ccnt,hit
     FROM 	tbl_board
     WHERE 	<!-- 보관해 둔 쿼리 사용 -->
 			<include refid="criteria"/> pno > 0

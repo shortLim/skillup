@@ -14,7 +14,7 @@
 
   <!-- コメントリスト照会 -->
   <select id="getListPage" resultType="com.skillup.domain.CommentVO">
-	    SELECT   (row_number() over()) AS crno, cno, cname, ccontent, regdate
+	    SELECT   (row_number() over(ORDER BY cno)) AS crno, cno, cname, ccontent, regdate
 	    FROM     tbl_comment
 	    WHERE 	 pno = #{pNo}
 	    ORDER BY cno DESC limit 10 offset (#{cri.pageNum}-1)*10

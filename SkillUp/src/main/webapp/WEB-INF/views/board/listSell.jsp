@@ -58,7 +58,7 @@
 				<c:forEach var="board" items="${list }">
 					<c:if test="${board.BNo eq 1}">
 					<tr>
-						<td>${board.PNo}</td>
+						<td>${board.prNo}</td>
 						<td><a href="${board.PNo}" class="move"> ${board.title }
 								<c:if test="${ board.CCnt > 0 }">
 									<b>[${board.CCnt }]</b>
