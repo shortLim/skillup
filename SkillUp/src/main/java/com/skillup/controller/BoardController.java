@@ -25,31 +25,24 @@ public class BoardController {
 
 	private BoardService service;
 
-	@GetMapping({ "/boardRead" }) //ポスト修正用照会
-	public void read(@RequestParam("pNo") long pNo,
-			@ModelAttribute("cri") Criteria cri,
-			Model model) {
-		log.info("BoardController...read() or update()");
-		model.addAttribute("board", service.read(pNo));
-	}
-
-	@GetMapping({ "/boardModify" }) //ポスト修正用照会
+	//ポスト照会
+	@GetMapping({ "/boardRead","/boardModify" })
 	public void get(@RequestParam("pNo") long pNo,
 			@ModelAttribute("cri") Criteria cri,
 			Model model) {
-		log.info("BoardController...get()");
+		log.info("BoardController...get()or update()");
 		model.addAttribute("board", service.get(pNo));
 	}
 
-	@PostMapping("/boardModify") //ポスト修正
-	public String update(BoardVO board, RedirectAttributes rttr) {
-		if (service.modify(board)) {
-			rttr.addFlashAttribute("result", "success");
-		}
+	//ポスト修正
+	@PostMapping("/boardModify")
+	public String update(BoardVO board) {
+		service.modify(board);
 		return "redirect:/board/boardSell";
 	}
 
-	@PostMapping("/remove") //ポスト削除
+	//ポスト削除
+	@PostMapping("/remove")
 	public String remove(Long pNo, String pass, RedirectAttributes rttr) {
 		log.info("BoardController...remove(" + pNo + "+" + pass + ")");
 		if (service.remove(pNo, pass)) {
@@ -58,12 +51,12 @@ public class BoardController {
 		return "redirect:/board/boardSell";
 	}
 
-	@RequestMapping(value = "/boardWrite")
-	public String boardWrite() {
-		return "board/boardWrite";
-	}
+	//各ページへ移動
+	@GetMapping({"/boardMain","/boardUp","/boardWrite"})
+	public void move() {}
 
-	@PostMapping("/boardWrite") //ポスト作成処理(board Ver.)
+	//ポスト作成処理
+	@PostMapping("/boardWrite")
 	public String boardWrite(BoardVO board, RedirectAttributes rttr) {
 		log.info("BoardController...register()");
 		service.register(board);
@@ -71,41 +64,13 @@ public class BoardController {
 			return "redirect:/board/boardSell";
 	}
 
-	@RequestMapping(value = "/boardUp")
-	public String boardUp() {
-		return "board/boardUp";
-	}
-
-	@RequestMapping(value = "/boardMain")
-	public String boardMain() {
-		return "board/boardMain";
-	}
-
-	@RequestMapping(value = "/boardBuy")
-	public String boardBuy(Criteria cri, Model model) {
-		log.info("BoardController...listBuy()");
+	//各掲示板へ移動
+	@GetMapping({"/boardBuy","/boardSell","/boardFree"})
+	public void list(Criteria cri, Model model) {
+		log.info("BoardController...list()");
 		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		return "board/boardBuy";
-	}
-
-	@RequestMapping(value = "/boardSell")
-	public String boardSell(Criteria cri, Model model) {
-		log.info("BoardController...listSell()");
-		int total = service.getTotalCount(cri);
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		return "board/boardSell";
-	}
-
-	@RequestMapping(value = "/boardFree")
-	public String boardFree(Criteria cri, Model model) {
-		log.info("BoardController...listFree()");
-		int total = service.getTotalCount(cri);
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(total, cri));
-		return "board/boardFree";
 	}
 
 }

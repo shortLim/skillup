@@ -47,7 +47,7 @@
 
   </select>
 
-  <!-- 게시물 수정 -->
+  <!-- ポスト修正 -->
   <update id="update">
     UPDATE  tbl_board
     SET     title = #{title}, name = #{name},

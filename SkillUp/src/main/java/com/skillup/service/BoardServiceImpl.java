@@ -19,30 +19,10 @@ public class BoardServiceImpl implements BoardService {
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
 
-
-	@Override
- 	public void register(BoardVO board) {
-		log.info("register... : " + board);
-		mapper.insert(board);
-	}
-
 	@Override
 	public int getTotalCount(Criteria cri) {
 		log.info("BoardServiceImpl...getTotalCount()");
 		return mapper.getTotalCount(cri);
-	}
-
-	@Override
-	public BoardVO read(Long pNo) {
-		log.info("BoardServiceImpl...read()");
-		mapper.updateHit(pNo);
-		return mapper.read(pNo);
-	}
-
-	@Override
-	public BoardVO get(Long pNo) {
-		log.info("BoardServiceImpl...get()");
-		return mapper.read(pNo);
 	}
 
 	@Override
@@ -52,10 +32,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean remove(Long pNo,String pass) {
-		log.info("BoardServiceImpl...remove("+pNo+"+"+pass+")");
-		return mapper.delete(pNo,pass) == 1;
+	public BoardVO get(Long pNo) {
+		log.info("BoardServiceImpl...get()");
+		mapper.updateHit(pNo);
+		return mapper.read(pNo);
+	}
 
+	@Override
+ 	public void register(BoardVO board) {
+		log.info("register... : " + board);
+		mapper.insert(board);
 	}
 
 	@Override
@@ -63,6 +49,14 @@ public class BoardServiceImpl implements BoardService {
 		log.info("BoardServiceImpl...modify() pNo : "+board.getPNo());
 		return mapper.update(board) == 1;
 	}
+
+	@Override
+	public boolean remove(Long pNo,String pass) {
+		log.info("BoardServiceImpl...remove("+pNo+"+"+pass+")");
+		return mapper.delete(pNo,pass) == 1;
+
+	}
+
 }
 
 
